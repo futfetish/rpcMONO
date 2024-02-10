@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { UserDto, UserDtoI } from "@/dtos/userDto";
 import { Err } from "@/entites/error/error";
-import { AuthServiceClient } from "@/service/authService";
+import { AuthServiceClient, authResponseI } from "@/service/authService";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { ZodError, z } from "zod";
 
@@ -9,16 +9,10 @@ const bodySchema = z.object({
   name: z.string().min(3, "имя от 3 символов"),
   password: z.string().min(3, "пороль от 3 символов"),
 });
-3
-interface response {
-  user: UserDtoI;
-  accessToken: string;
-  refreshToken: string;
-}
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<response | Err>
+  res: NextApiResponse<authResponseI | Err>
 ) {
   if (req.method === "POST") {
     try {

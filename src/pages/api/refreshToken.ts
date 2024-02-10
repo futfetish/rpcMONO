@@ -3,14 +3,7 @@ import { Err } from "@/entites/error/error";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ZodError, z } from "zod";
 import { UserDto, UserDtoI } from "@/dtos/userDto";
-import { AuthServiceClient } from "@/service/authService";
-
-
-interface response {
-    user: UserDtoI;
-    accessToken: string;
-    refreshToken: string;
-  }
+import { AuthServiceClient, authResponseI } from "@/service/authService";
 
 const bodySchema = z.object({
   name: z.string(),
@@ -19,7 +12,7 @@ const bodySchema = z.object({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<response | Err>
+  res: NextApiResponse<authResponseI | Err>
 ) {
   if (req.method === "GET") {
     try {

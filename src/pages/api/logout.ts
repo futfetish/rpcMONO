@@ -7,7 +7,7 @@ import { UserDto } from "@/dtos/userDto";
 import { TokenServiceClient } from "@/service/tokenService";
 import { AuthServiceClient } from "@/service/authService";
 
-interface response {}3
+interface response {}
 
 export default async function handler(
   req: NextApiRequest,

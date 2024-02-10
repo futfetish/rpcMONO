@@ -5,14 +5,7 @@ import { ZodError, z } from "zod";
 import bcrypt from "bcrypt";
 import { UserDto, UserDtoI } from "@/dtos/userDto";
 import { TokenServiceClient } from "@/service/tokenService";
-import { AuthServiceClient } from "@/service/authService";
-
-
-interface response {
-    user: UserDtoI;
-    accessToken: string;
-    refreshToken: string;
-  }
+import { AuthServiceClient, authResponseI } from "@/service/authService";
 
 const bodySchema = z.object({
   name: z.string(),
@@ -21,7 +14,7 @@ const bodySchema = z.object({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<response | Err>
+  res: NextApiResponse<authResponseI | Err>
 ) {
   if (req.method === "POST") {
     try {

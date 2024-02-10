@@ -5,30 +5,28 @@ import { UserControlerClient, userI } from "@/entites/user/userController";
 import bcrypt from "bcrypt";
 import { TokenServiceClient } from "./tokenService";
 
+export interface authResponseI {
+  user: UserDtoI;
+  accessToken: string;
+  refreshToken: string;
+}
+
 interface AuthServiceI {
   register: (
     name: string,
     password: string
-  ) => Promise<{
-    user: UserDtoI;
-    accessToken: string;
-    refreshToken: string;
-  }>;
+  ) => Promise<authResponseI>;
 
   login: (
     name: string,
     password: string
-  ) => Promise<{
-    user: UserDtoI;
-    accessToken: string;
-    refreshToken: string;
-  }>;
+  ) => Promise<authResponseI>;
 
   logout: (token: string) => void;
 
   refreshToken: (
     refreshToken: string
-  ) => Promise<{ user: UserDtoI; accessToken: string; refreshToken: string }>;
+  ) => Promise<authResponseI>;
 }
 
 class AuthService implements AuthServiceI {
@@ -95,7 +93,7 @@ class AuthService implements AuthServiceI {
     }
     const userDto = new UserDto(user);
     const tokens = await TokenServiceClient.generateTokens(userDto);
-    await TokenServiceClient.saveToken(user.id , tokens.refreshToken)
+    await TokenServiceClient.saveToken(user.id, tokens.refreshToken);
     return { ...tokens, user: userDto };
   }
 }
