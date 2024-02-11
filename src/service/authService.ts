@@ -46,7 +46,7 @@ class AuthService implements AuthServiceI {
     );
 
     const userDto = new UserDto(user);
-    const tokens = TokenServiceClient.generateTokens(userDto);
+    const tokens = TokenServiceClient.generateTokens({...userDto});
     await TokenServiceClient.saveToken(user.id, tokens.refreshToken);
 
     return {
@@ -65,7 +65,7 @@ class AuthService implements AuthServiceI {
       throw new Err("password", "неправельный пароль");
     }
     const userDto = new UserDto(user);
-    const tokens = await TokenServiceClient.generateTokens(userDto);
+    const tokens = await TokenServiceClient.generateTokens({...userDto});
 
     await TokenServiceClient.saveToken(user.id, tokens.refreshToken);
 
@@ -92,7 +92,7 @@ class AuthService implements AuthServiceI {
       throw Err.authError();
     }
     const userDto = new UserDto(user);
-    const tokens = await TokenServiceClient.generateTokens(userDto);
+    const tokens = await TokenServiceClient.generateTokens({...userDto});
     await TokenServiceClient.saveToken(user.id, tokens.refreshToken);
     return { ...tokens, user: userDto };
   }
