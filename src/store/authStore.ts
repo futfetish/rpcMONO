@@ -1,24 +1,42 @@
-import { $api } from "@/axios/api";
+import { $api, API_URL } from "@/axios/api";
 import { AuthServerClient } from "@/axios/server/authServer";
 import { UserDtoI } from "@/dtos/userDto";
 import { userI } from "@/entites/user/userController";
 import { authResponseI } from "@/service/authService";
+import axios from "axios";
 import { create } from "zustand";
 
 interface AuthStoreI {
-  name: string;
-  password: string;
-  login: () => void;
   user: UserDtoI | null;
+  login: (name: string, password: string) => void;
+  register: (name: string, password: string) => void;
+  logout: () => void;
+  chechAuth: () => void
 }
 
-const AuthStore = create<AuthStoreI>((set, get) => ({
-  name: "",
-  password: "",
+export const AuthStore = create<AuthStoreI>((set, get) => ({
   user: null,
-  login: async () => {
-    const response = await AuthServerClient.login(get().name, get().password);
+  login: async (name, password) => {
+    const response = await AuthServerClient.login(name, password);
     localStorage.setItem("accessToken", response.data.accessToken);
-    set({user : response.data.user})
+    set({ user: response.data.user });
   },
+  register: async (name, password) => {
+    const response = await AuthServerClient.register(name, password);
+    localStorage.setItem("accessToken", response.data.accessToken);
+    set({ user: response.data.user });
+  },
+  logout: async () => {
+    await AuthServerClient.logout();
+    set({ user: null });
+  },
+  chechAuth : async () => {
+    try {
+      const userData = await axios.get<authResponseI>(`${API_URL}/refreshToken` , {withCredentials : true}) 
+      set({user : userData.data.user})
+    } catch (e) {
+      //пользователь не авторизован
+    }
+   
+  }
 }));
