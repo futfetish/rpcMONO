@@ -18,7 +18,6 @@ export default async function handler(
     try {
       const { name, password } = bodySchema.parse(req.body);
       const userData = await AuthServiceClient.register(name, password);
-
       res.setHeader(
         "Set-Cookie",
         `refreshToken=${userData.refreshToken}; HttpOnly; Max-Age=${

@@ -21,6 +21,12 @@ export default async function handler(
           throw Err.authError();
         }
         const data = await AuthServiceClient.refreshToken(refreshToken);
+        res.setHeader(
+          "Set-Cookie",
+          `refreshToken=${data.refreshToken}; HttpOnly; Max-Age=${
+            60 * 60 * 24 * 30
+          }`
+        );
         res.status(200).json(data);
       } catch (e) {
         res.status(401).json(e as Err);
