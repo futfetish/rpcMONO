@@ -8,6 +8,7 @@ import { create } from "zustand";
 
 interface AuthStoreI {
   user: UserDtoI | null;
+  isLoading : boolean;
   login: (name: string, password: string) => void;
   register: (name: string, password: string) => void;
   logout: () => void;
@@ -16,6 +17,7 @@ interface AuthStoreI {
 
 export const AuthStore = create<AuthStoreI>((set, get) => ({
   user: null,
+  isLoading : false,
   login: async (name, password) => {
     const response = await AuthServerClient.login(name, password);
     localStorage.setItem("accessToken", response.data.accessToken);
@@ -31,11 +33,14 @@ export const AuthStore = create<AuthStoreI>((set, get) => ({
     set({ user: null });
   },
   chechAuth : async () => {
+    set({isLoading : true})
     try {
       const userData = await axios.get<authResponseI>(`${API_URL}/refreshToken` , {withCredentials : true}) 
       set({user : userData.data.user})
     } catch (e) {
       //пользователь не авторизован
+    } finally {
+      set({isLoading : false})
     }
    
   }
