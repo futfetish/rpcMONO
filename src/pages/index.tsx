@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { AuthStore } from "@/store/authStore";
+import { MyA } from "@/UI/myA/myA";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,7 @@ export default function Home() {
       {user ? (
         <div>
           <p> вы авторизованы : {user.name} </p>
-          <button onClick={() => logout()}>logout</button>
+          <MyA  onClick={() => logout()}>logout</MyA>
         </div>
       ) : (
         <div>вы не авторизованы</div>
