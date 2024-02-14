@@ -1,0 +1,13 @@
+.box {
+    background-color: #e6e6e6;
+  height: 100svh;
+  width: 100svw;
+  // overflow: auto;
+  display: flex;
+  flex-direction: column;
+  .content {
+    padding: 0 50px;
+    flex-grow: 1;
+    overflow: auto;
+  }
+}
