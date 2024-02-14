@@ -8,21 +8,24 @@ interface props {
   disabled?: boolean;
 }
 
-export const MyButton: FC<props> = ({
-    children,
-    onClick,
-    disabled = false,
+export const MyButton: FC<props & Record<string , any>> = ({
+  children,
+  onClick,
+  disabled = false,
   ...props
 }) => {
   return (
-    <div>
-        <button className={ classNames(Styles.myButton)} {...props} disabled={disabled} onClick={() => {
-            if(onClick){
-                onClick()
-            }
-        }}>
-            {children}
-        </button>
-    </div>
+    <button
+      className={classNames(Styles.myButton)}
+      {...props}
+      disabled={disabled}
+      onClick={() => {
+        if (onClick) {
+          onClick();
+        }
+      }}
+    >
+      {children}
+    </button>
   );
 };

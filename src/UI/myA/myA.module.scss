@@ -1,0 +1,14 @@
+.myA{
+    color : #5c5c5c;
+    display: block;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    &:hover{
+        color : black;
+    }
+}

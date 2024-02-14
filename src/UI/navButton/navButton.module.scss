@@ -1,0 +1,32 @@
+.box{
+    border-left: 3px solid transparent ;
+    position: relative;
+    .navButton{
+        color : #5c5c5c;
+        display: block;
+        text-decoration: none;
+        padding: 10px;
+        font-size: 20px;
+    }
+    .navSubButton{
+        width: 150px;
+    }
+    .modal{
+        left: -3px;
+        background-color: white;
+        display: none;
+        border-left: 3px solid #6991ff ;
+        flex-direction: column;
+        position: absolute;
+        &:hover{
+            background-color:  #6991ff ;
+        }
+    }
+    &:hover{
+        background-color:   white;
+        border-left: 3px solid #6991ff ;
+        .modal{
+            display: flex;
+        }
+    }
+}

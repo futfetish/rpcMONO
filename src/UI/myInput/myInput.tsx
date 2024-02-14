@@ -10,7 +10,7 @@ interface props {
   
 }
 
-export const MyInput: FC<props> = ({ value = "", onChange , error = '' , placeholder = '' , ...props}) => {
+export const MyInput: FC<props & Record<string , any>> = ({ value = "", onChange , error = '' , placeholder = '' , ...props}) => {
   return (
     <div className={Styles.box}>
       <input
