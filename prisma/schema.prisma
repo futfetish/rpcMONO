@@ -14,6 +14,7 @@ model User{
   id Int @id @default(autoincrement())
   name String @unique
   password String
+  rating Int @default(1500)
   tokens refreshToken[]
 }
 
