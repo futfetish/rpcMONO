@@ -20,7 +20,6 @@ $api.interceptors.response.use(
     return config;
   },
   async (error) => {
-    console.log(1)
     const req = error.config;
     if (error.response) {
       if (
@@ -38,6 +37,8 @@ $api.interceptors.response.use(
         } catch  {
             //пользователь не авторизован
         }
+      } else {
+        return error
       }
     }
   }
