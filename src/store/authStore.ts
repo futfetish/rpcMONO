@@ -14,7 +14,7 @@ interface AuthStoreI {
   login: (name: string, password: string) => Promise<void | Err>;
   register: (name: string, password: string) => Promise<void | Err>;
   logout: () => void;
-  chechAuth: () => void;
+  checkAuth: () => void;
 }
 
 export const AuthStore = create<AuthStoreI>((set, get) => ({
@@ -43,7 +43,7 @@ export const AuthStore = create<AuthStoreI>((set, get) => ({
     await AuthServerClient.logout();
     set({ user: null });
   },
-  chechAuth: async () => {
+  checkAuth: async () => {
     set({ isLoading: true });
     try {
       const userData = await axios.get<authResponseI>(
