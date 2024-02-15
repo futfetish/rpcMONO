@@ -1,7 +1,5 @@
 import { MyButton } from "@/UI/myButton/myButton";
 import { MyInput } from "@/UI/myInput/myInput";
-import { Err } from "@/entites/error/error";
-import { AuthStore } from "@/store/authStore";
 import { FC, useState } from "react";
 import Styles from './namePassword.module.scss'
 

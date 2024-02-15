@@ -9,6 +9,8 @@ interface props {
 export const Layout: FC<props> = ({ children }) => {
   return (
     <div className={Styles.box}>
+    
+
       <Nav />
       <div className={Styles.content}>{children}</div>
     </div>
