@@ -2,7 +2,7 @@ import { $api, API_URL } from "@/axios/api";
 import { AuthServerClient } from "@/axios/server/authServer";
 import { UserDtoI } from "@/dtos/userDto";
 import { Err } from "@/entites/error/error";
-import { userI } from "@/entites/user/userController";
+import { userI } from "@/service/userService";
 import { authResponseI } from "@/service/authService";
 import axios, { AxiosError } from "axios";
 import { create } from "zustand";

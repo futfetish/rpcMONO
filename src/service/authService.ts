@@ -1,7 +1,7 @@
 import { DB } from "@/db";
 import { UserDto, UserDtoI } from "@/dtos/userDto";
 import { Err } from "@/entites/error/error";
-import { UserControlerClient, userI } from "@/entites/user/userController";
+import { UserServiceClient, userI } from "@/service/userService";
 import bcrypt from "bcrypt";
 import { TokenServiceClient } from "./tokenService";
 
@@ -40,7 +40,7 @@ class AuthService implements AuthServiceI {
       throw new Err("name", "пользователь существует");
     }
     const hashPassword = await bcrypt.hash(password, 5);
-    const user = await UserControlerClient.create(
+    const user = await UserServiceClient.create(
       (name = name),
       (password = hashPassword)
     );
