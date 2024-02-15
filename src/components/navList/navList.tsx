@@ -7,7 +7,7 @@ interface pages{
     href : string
 }
 
-const navPages : (pages & {subPages : pages[]})[] = [{ name: "ИГРА", href: `/game` , subPages : [{name : 'test' , href: '/test'}] } ,{ name: "ИГРОКИ", href: `/users` , subPages : [{name : 'test' , href: '/test'}] }  ] ;
+const navPages : (pages & {subPages : pages[]})[] = [{ name: "ИГРА", href: `/game` , subPages : [{name : 'test' , href: '/test'}] } ,{ name: "ИГРОКИ", href: `/users` , subPages : [{name : 'лучшие игроки' , href: '/users/top'}] }  ] ;
 
 export const NavList : FC = () => {
     return <div className={Styles.box}>
