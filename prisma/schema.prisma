@@ -16,10 +16,20 @@ model User{
   password String
   rating Int @default(1500)
   tokens refreshToken[]
+  games Game[]
+  wonGames Game[]   @relation("Winner")
 }
 
 model refreshToken {
   user User @relation(fields: [userId], references: [id])
   userId Int @unique
   token String @unique
+}
+
+model Game {
+  id       Int      @id @default(autoincrement())
+  users    User[]
+  winner User? @relation("Winner" ,  fields: [winnerId], references: [id])
+  winnerId Int?
+  ratingChange Int
 }
