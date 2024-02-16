@@ -31,5 +31,5 @@ model Game {
   users    User[]
   winner User? @relation("Winner" ,  fields: [winnerId], references: [id])
   winnerId Int?
-  ratingChange Int
+  ratingChange Int?
 }
