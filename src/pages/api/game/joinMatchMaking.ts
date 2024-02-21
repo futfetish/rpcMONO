@@ -27,7 +27,7 @@ export default async function handler(
       
       socket.on("connect", () => {
         console.log("Socket connected");
-        socket.emit("joinMatchMaking", userData);
+        socket.emit("joinMatchMaking", {user : userData});
         socket.disconnect();
       });
 
