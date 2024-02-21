@@ -7,6 +7,7 @@ async function getGame(id: number) {
     where: { id },
     select: {
       id: true,
+      status : true,
       users: {
         select: {
           userId: true,

@@ -26,10 +26,16 @@ model refreshToken {
   token String @unique
 }
 
+enum gameStatus {
+  inProcess
+  ended
+}
+
 model Game {
   id       Int      @id @default(autoincrement())
   users    userGame[]
   winner User? @relation("Winner" ,  fields: [winnerId], references: [id], onDelete: Cascade)
+  status gameStatus @default(inProcess)
   date DateTime @default(now())
   winnerId Int?
   ratingChange Int?

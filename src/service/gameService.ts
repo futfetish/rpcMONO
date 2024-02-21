@@ -8,10 +8,13 @@ interface userGameI {
   gameId: number;
 }
 
+type gameStatus = 'inProcess' | 'ended'
+
 export interface GameI {
   users: userGameI[];
   id: number;
   date: Date;
+  status: gameStatus
   winnerId?: number;
   ratingChange?: number;
 }
