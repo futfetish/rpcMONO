@@ -1,4 +1,4 @@
-import { NamePasswordForm } from "@/components/namePasswordForm/namePasswordForm";
+import { NamePasswordForm } from "@/components/auth/namePasswordForm/namePasswordForm";
 import { AuthStore } from "@/store/authStore";
 import { FC } from "react";
 

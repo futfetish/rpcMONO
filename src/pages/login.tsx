@@ -1,4 +1,4 @@
-import { LoginForm } from "@/features/loginForm";
+import { LoginForm } from "@/features/auth/loginForm";
 import { FC } from "react";
 import Styles from "@/styles/authForm.module.scss";
 

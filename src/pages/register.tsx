@@ -1,4 +1,4 @@
-import { RegisterForm } from "@/features/registerForm";
+import { RegisterForm } from "@/features/auth/registerForm";
 import { FC } from "react";
 import Styles from "@/styles/authForm.module.scss";
 

@@ -1,5 +1,5 @@
-import { NavList } from "@/components/navList/navList";
-import { NavProfile } from "@/components/navProfile/navProfile";
+import { NavList } from "@/components/nav/navList/navList";
+import { NavProfile } from "@/components/nav/navProfile/navProfile";
 import { FC } from "react";
 import Styles from "./nav.module.scss";
 

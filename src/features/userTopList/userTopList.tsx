@@ -1,5 +1,5 @@
 import { UserServerClient } from "@/axios/server/userServer";
-import { UserItem } from "@/components/userItem/userItem";
+import { UserItem } from "@/components/user/userItem/userItem";
 import { UserDtoI } from "@/dtos/userDto";
 import { UserServiceClient } from "@/service/userService";
 import { FC, useEffect, useState } from "react";
