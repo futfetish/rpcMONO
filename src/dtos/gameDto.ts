@@ -17,6 +17,6 @@ export class GameDto implements GameDtoI {
         this.id = game.id
         this.ratingChange = game.ratingChange
         this.winnerId = game.winnerId
-        this.usersIds = game.users.map((user) => user.id)
+        this.usersIds = game.users.map((user) => user.userId)
     }
 }

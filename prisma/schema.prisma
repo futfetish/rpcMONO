@@ -16,20 +16,39 @@ model User{
   password String
   rating Int @default(1500)
   tokens refreshToken[]
-  games Game[]
+  games userGame[]
   wonGames Game[]   @relation("Winner")
 }
 
 model refreshToken {
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id] , onDelete: Cascade)
   userId Int @unique
   token String @unique
 }
 
 model Game {
   id       Int      @id @default(autoincrement())
-  users    User[]
-  winner User? @relation("Winner" ,  fields: [winnerId], references: [id])
+  users    userGame[]
+  winner User? @relation("Winner" ,  fields: [winnerId], references: [id], onDelete: Cascade)
+  date DateTime @default(now())
   winnerId Int?
   ratingChange Int?
+}
+
+enum gameMoveTypes {
+  rock
+  scissors
+  paper
+}
+
+model userGame {
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+
+  game Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  gameId Int
+
+  move gameMoveTypes?
+
+  @@id([userId , gameId])
 }
