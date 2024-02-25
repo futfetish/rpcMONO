@@ -5,7 +5,7 @@ import { number } from "zod";
 
 interface userGameI {
   userId: number;
-  gameId: number;
+  gameId?: number;
 }
 
 type gameStatus = 'inProcess' | 'ended'
