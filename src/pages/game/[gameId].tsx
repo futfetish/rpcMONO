@@ -1,6 +1,9 @@
 import { DB } from "@/db";
+import { GameDto } from "@/dtos/gameDto";
+import { GameProcess } from "@/features/game/gameProcces/gameProcces";
 import { AuthStore } from "@/store/authStore";
 import { GetServerSideProps } from "next";
+import SuperJSON from "superjson";
 
 async function getGame(id: number) {
   const game = await DB.game.findUnique({
@@ -13,9 +16,11 @@ async function getGame(id: number) {
           userId: true,
         },
       },
+      date : true 
     },
   });
-  return game;
+  const data = SuperJSON.serialize(game).json;
+  return data as typeof game;
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -35,6 +40,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
   }
 
+  const gameGto = new GameDto(res)
+
   return {
     props: {
       game: res,
@@ -45,7 +52,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 export default function GamePage({
   game,
 }: {
-  game: NonNullable<Awaited<ReturnType<typeof getGame>>>;
+  game: GameDto;
 }) {
-  return <>{game.id}</>;
+  return <GameProcess game={game} />;
 }
