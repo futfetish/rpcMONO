@@ -7,10 +7,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { ZodError, z } from "zod";
 
 const bodySchema = z.object({
-  ids: z.array(z.number()),
+  id: z.number(),
 });
 
-interface response { id : number}
+interface response {}
 
 export default async function handler(
   req: NextApiRequest,
@@ -18,9 +18,9 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     try {
-      const { ids } = bodySchema.parse(req.body);
-      const game = await GameServiceClient.create(ids[0] , ids[1])
-      res.status(200).json({ id: game.id });
+      const { id } = bodySchema.parse(req.body);
+      await GameServiceClient.close(id)
+      res.status(200).json({});
     } catch (e) {
       res.status(401).json(e as ZodError | Err);
     }

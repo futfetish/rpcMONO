@@ -9,7 +9,7 @@ interface props {
 
 export const UserItem: FC<props> = ({ user, index }) => {
   return (
-    <a href={"user/" + user.id} className={Styles.box}>
+    <a href={"/users/" + user.id} className={Styles.box}>
       <p
         className={classNames(
           Styles.rank,

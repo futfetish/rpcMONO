@@ -43,7 +43,7 @@ const GameFind: FC = () => {
         socket.disconnect();
       };
     }
-  }, [user, router]);
+  }, [user , router]);
 
   if (!isLoading && !user) {
     return <div>вы не авторизованыййцый</div>;

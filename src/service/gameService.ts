@@ -21,6 +21,7 @@ export interface GameI {
 
 interface GameServiceI {
   create: (firstUserId: number, secondUserId: number) => Promise<GameDtoI>;
+  close: (gameId : number) => void
 }
 
 class GameService implements GameServiceI {
@@ -39,6 +40,14 @@ class GameService implements GameServiceI {
     } as GameI);
 
     return gameDto;
+  }
+
+  async close(gameId :number){
+    await DB.game.update({
+      where : {id : gameId},
+      data : {status : 'ended'}
+    })
+    return
   }
 }
 
