@@ -1,0 +1,17 @@
+.myButton{
+    width: 100%;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #6991ff;
+    transition: all s ease-in-out;
+    &:hover{
+        background-color: #5768ff ;
+    }
+    &:active{
+        transform: scale(0.99);
+        background-color: #475aff;
+    }
+}

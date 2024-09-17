@@ -1,0 +1,32 @@
+$lightgray : #b3b3b3;
+
+.box {
+  width: 100%;
+}
+
+.myInput {
+  width: 100%;
+  outline: none;
+  border-radius: 3px;
+  padding: 5px 8px;
+  font-size: 20px;
+  border: 1px solid $lightgray;
+  transition: all 0.2s ease-out;
+  &:focus-visible {
+    border: 1px solid #6991ff;
+  }
+  &::placeholder{
+    color: $lightgray;
+  }
+}
+
+.onError {
+    border: 1px solid red !important;
+}
+
+.error {
+    height: 20px;
+    margin-top: 3px;
+    color: red;
+
+}

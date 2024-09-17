@@ -1,0 +1,17 @@
+.container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  .box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 800px;
+    justify-content: space-between;
+    padding: 10px;
+    .moves{
+        display: flex;
+    }
+  }
+}

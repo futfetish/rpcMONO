@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id Int @id @default(autoincrement())
+  name String @unique
+  password String
+  rating Int @default(1500)
+  tokens refreshToken[]
+  games userGame[]
+  wonGames Game[]   @relation("Winner")
+}
+
+model refreshToken {
+  user User @relation(fields: [userId], references: [id] , onDelete: Cascade)
+  userId Int @unique
+  token String @unique
+}
+
+enum gameStatus {
+  inProcess
+  ended
+}
+
+model Game {
+  id       Int      @id @default(autoincrement())
+  users    userGame[]
+  winner User? @relation("Winner" ,  fields: [winnerId], references: [id], onDelete: Cascade)
+  status gameStatus @default(inProcess)
+  date DateTime @default(now())
+  winnerId Int?
+  ratingChange Int?
+}
+
+enum gameMoveTypes {
+  rock
+  scissors
+  paper
+}
+
+model userGame {
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+
+  game Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  gameId Int
+
+  move gameMoveTypes?
+
+  @@id([userId , gameId])
+}
